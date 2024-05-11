@@ -1,0 +1,34 @@
+<ion-content>
+  <div class="inputs-container">
+    <ion-input
+      [(ngModel)]="email"
+      type="email"
+      label="Email"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Enter text"
+    ></ion-input>
+
+    <ion-input
+      [(ngModel)]="password"
+      type="password"
+      label="Password"
+      label-placement="floating"
+      fill="outline"
+      placeholder="Enter text"
+    ></ion-input>
+
+    <div>
+      <ion-button
+        (click)="login()"
+        color="success"
+        expand="block"
+        shape="round"
+      >
+        LOGIN
+      </ion-button>
+      <span>OR</span>
+      <a [routerLink]="['/signup']"> CREATE ACCOUNT </a>
+    </div>
+  </div>
+</ion-content>

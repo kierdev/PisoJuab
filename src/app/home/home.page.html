@@ -1,22 +1,31 @@
 <ion-menu side="end" contentId="main-content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu Content</ion-title>
+      <ion-title>Settings</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content class="ion-padding">This is the menu content.</ion-content>
+  <ion-content class="ion-padding">
+    <ul>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/settings">Settings</a></li>
+      <li><a href="/help">Help</a></li>
+    </ul>
+  </ion-content>
 </ion-menu>
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
-      <div class="header-text">Welcome!</div>
+      <div class="header-text">Welcome! {{userName}}</div>
       <ion-buttons slot="end">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <div class="container">
+    <h1 class="loading-text" *ngIf="isLoading" color="tertiary">
+      Loading please wait...
+    </h1>
+    <div *ngIf="!isLoading" class="container">
       <div class="green-card" color="success">
         <span>Available Balance</span>
         <div>P270,000,000.00</div>
@@ -27,19 +36,17 @@
       <div class="light-green-card">
         <div>Credit Cards</div>
       </div>
-      <div class="light-green-card">
+      <div (click)="navigate('transactions')" class="light-green-card">
         <div>Transactions</div>
       </div>
       <section>
         <h3>Detail of movements</h3>
-        <div class="details-container">
+        <div *ngFor="let item of transactions" class="details-container">
           <div class="white-card">
-            <span>Salary Deposit</span>
-            <span class="white-card-value-pos">+ P5,600.25</span>
-          </div>
-          <div class="white-card">
-            <span>Money Withdrawal</span>
-            <span class="white-card-value-neg">+ P5,600.25</span>
+            <span>{{item.type}}</span>
+            <span class="{{whiteCardClass(item.type)}}"
+              >{{valueFormat(item.type,item.value)}}</span
+            >
           </div>
         </div>
       </section>
