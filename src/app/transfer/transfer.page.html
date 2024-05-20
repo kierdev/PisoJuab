@@ -1,0 +1,37 @@
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
+    <h1>Transf</h1>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+    <div class="container">
+      <ion-input
+        type="text"
+        [(ngModel)]="accountNumber"
+        placeholder="Account Number"
+      ></ion-input>
+      <ion-button (click)="searchAccount()" expand="block" shape="round">
+        Search
+      </ion-button>
+
+      <div *ngIf="isAccountExisting" class="transfer-details">
+        <div class="account-details">
+          <div>{{firstName}}</div>
+          <div>{{middleName}}</div>
+          <div>{{lastName}}</div>
+        </div>
+        <div>
+          <ion-input
+            type="text"
+            [(ngModel)]="value"
+            placeholder="Amount"
+          ></ion-input>
+          <ion-button (click)="transferMoney()" expand="block" shape="round">
+            transfer
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</div>

@@ -3,7 +3,8 @@ import { RouterLink, Router } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { AccountService } from '../Services/Account/account.service';
 import { User } from 'firebase/auth';
-import { UserdataService } from '../Services/UserData/userdata.service';
+import { UserdataService } from '../Services/Userdata/userdata.service';
+import { AuthenticationService } from '../Services/Authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +18,14 @@ export class LoginPage {
     private router: Router,
     private alertController: AlertController,
     private toastController: ToastController,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private authenticationService: AuthenticationService
   ) {}
   login() {
     this.accountService
       .login(this.email, this.password)
-      .then((userCredential) => {
-        const user = userCredential;
+      .then(() => {
+        this.accountService.setEmail(this.email);
         this.alertLogin();
       })
       .catch(() => {
@@ -42,7 +44,9 @@ export class LoginPage {
         {
           text: 'OK',
           handler: () => {
-            this.router.navigate(['home']);
+            this.authenticationService.setUser(this.email);
+            this.authenticationService.setAuth(true);
+            this.router.navigate(['dashboard/home'], {});
           },
         },
       ],

@@ -1,6 +1,7 @@
-import { Transaction } from 'firebase/firestore';
+import { Transaction } from './transaction.model';
 
 export interface User {
+  id: string;
   age: number;
   balance: number;
   firstName: string;

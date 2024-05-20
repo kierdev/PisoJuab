@@ -1,6 +1,3 @@
-ion-select-option {
-  --ion-text-color: black;
-}
 ion-header {
   display: flex;
   align-items: center;
@@ -14,8 +11,10 @@ ion-header ion-icon {
 ion-header h1 {
   margin: auto 0;
 }
-.inputs-container {
-  width: 100%;
+.account-details {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1rem;
 }

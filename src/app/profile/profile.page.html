@@ -1,0 +1,37 @@
+<ion-content [fullscreen]="true">
+  <ion-avatar>
+    <img
+      alt="Silhouette of a person's head"
+      src="https://ionicframework.com/docs/img/demos/avatar.svg"
+    />
+  </ion-avatar>
+  <ion-list>
+    <ion-item>
+      <ion-label>Account Number</ion-label>
+      <div>{{accountNumber}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <div>{{email}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label>First name:</ion-label>
+      <div>{{firstName}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Middle name</ion-label>
+      <div>{{middleName}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Last name</ion-label>
+      <div>{{lastName}}</div>
+    </ion-item>
+    <ion-item>
+      <ion-label>Age:</ion-label>
+      <div>{{age}}</div>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)="logoOut()" expand="block" color="primary" shape="round">
+    Logout
+  </ion-button>
+</ion-content>

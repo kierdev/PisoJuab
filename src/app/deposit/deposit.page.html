@@ -1,0 +1,21 @@
+<ion-content class="ion-padding">
+  <ion-header>
+    <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
+    <h1>Transfer</h1>
+  </ion-header>
+
+  <div class="input-container">
+    <ion-text color="primary">
+      <h1>Deposit Amount</h1>
+    </ion-text>
+    <ion-input type="text" placeholder="Enter amount"></ion-input>
+    <ion-button
+      (click)="deposit()"
+      color="success"
+      expand="block"
+      shape="round"
+    >
+      Proceed
+    </ion-button>
+  </div>
+</ion-content>

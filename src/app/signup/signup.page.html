@@ -1,13 +1,77 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>signup</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">signup</ion-title>
-    </ion-toolbar>
+  <ion-header>
+    <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
+    <h1>Create Account</h1>
   </ion-header>
+  <ion-item>
+    <ion-label>Please indicate the product that you have with us.</ion-label>
+    <ion-select [(ngModel)]="selectedProduct">
+      <ion-select-option value="deposit">Deposit</ion-select-option>
+      <ion-select-option value="loan">Loan</ion-select-option>
+      <ion-select-option value="savings">Savings</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <div class="inputs-container">
+      <ion-input
+        [(ngModel)]="accountNumber"
+        label="Account Number"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Enter text"
+      ></ion-input>
+      <ion-input
+        [(ngModel)]="firstName"
+        label="First name"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Enter text"
+      ></ion-input>
+      <ion-input
+        [(ngModel)]="middleName"
+        label="Middle name"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Enter text"
+      ></ion-input>
+      <ion-input
+        [(ngModel)]="lastName"
+        label="Last Name"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Enter text"
+      ></ion-input>
+      <ion-input
+        [(ngModel)]="age"
+        label="Age"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Enter text"
+      ></ion-input>
+      <ion-input
+        [(ngModel)]="email"
+        label="Email"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Enter text"
+      ></ion-input>
+      <ion-input
+        [(ngModel)]="password"
+        label="Password"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Enter text"
+      ></ion-input>
+      <ion-input
+        [(ngModel)]="retypePassword"
+        label="Retype Password"
+        label-placement="floating"
+        fill="outline"
+        placeholder="Enter text"
+      ></ion-input>
+      <ion-button (click)="signup()" expand="block" shape="round">
+        Register
+      </ion-button>
+    </div>
+  </ion-item>
 </ion-content>

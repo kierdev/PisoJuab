@@ -6,16 +6,8 @@ import { TransactionsPage } from './transactions.page';
 const routes: Routes = [
   {
     path: '',
-    component: TransactionsPage
-  },  {
-    path: 'deposit',
-    loadChildren: () => import('./deposit/deposit.module').then( m => m.DepositPageModule)
+    component: TransactionsPage,
   },
-  {
-    path: 'paybill',
-    loadChildren: () => import('./paybill/paybill.module').then( m => m.PaybillPageModule)
-  }
-
 ];
 
 @NgModule({

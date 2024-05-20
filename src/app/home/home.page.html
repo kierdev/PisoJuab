@@ -1,55 +1,68 @@
-<ion-menu side="end" contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Settings</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <ul>
-      <li><a href="/profile">Profile</a></li>
-      <li><a href="/settings">Settings</a></li>
-      <li><a href="/help">Help</a></li>
-    </ul>
-  </ion-content>
-</ion-menu>
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <div class="header-text">Welcome! {{userName}}</div>
-      <ion-buttons slot="end">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <h1 class="loading-text" *ngIf="isLoading" color="tertiary">
-      Loading please wait...
-    </h1>
-    <div *ngIf="!isLoading" class="container">
-      <div class="green-card" color="success">
-        <span>Available Balance</span>
-        <div>P270,000,000.00</div>
-      </div>
-      <div class="light-green-card">
-        <div>Deposit Accounts</div>
-      </div>
-      <div class="light-green-card">
-        <div>Credit Cards</div>
-      </div>
-      <div (click)="navigate('transactions')" class="light-green-card">
-        <div>Transactions</div>
-      </div>
-      <section>
-        <h3>Detail of movements</h3>
-        <div *ngFor="let item of transactions" class="details-container">
-          <div class="white-card">
-            <span>{{item.type}}</span>
-            <span class="{{whiteCardClass(item.type)}}"
-              >{{valueFormat(item.type,item.value)}}</span
-            >
-          </div>
-        </div>
-      </section>
+<ion-content class="ion-padding">
+  <ion-spinner
+    *ngIf="isLoading"
+    class="loadingAnimation"
+    name="circles"
+  ></ion-spinner>
+  <div *ngIf="!isLoading" class="container">
+    <h1>My Wallet</h1>
+    <div class="dashboard-card">
+      <span>Available Balance</span>
+      <div>PHP{{balance}}.00</div>
+      <span>Account Number</span>
+      <div>{{currentAccountNumber}}</div>
     </div>
-  </ion-content>
-</div>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4"
+          ><div class="icon" (click)="navigate('transfer')">
+            <ion-icon name="cash-outline"></ion-icon>
+            <ion-text color="primary"> Transfer </ion-text>
+          </div></ion-col
+        >
+        <ion-col size="4"
+          ><div class="icon" (click)="navigate('transactions')">
+            <ion-icon name="today-outline"></ion-icon>
+            <ion-text color="primary"> History </ion-text>
+          </div></ion-col
+        >
+        <ion-col size="4"
+          ><div class="icon">
+            <ion-icon name="card-outline"></ion-icon>
+            <ion-text color="primary"> Pay Bills </ion-text>
+          </div></ion-col
+        >
+      </ion-row>
+      <ion-row>
+        <ion-col size="4"
+          ><div class="icon" (click)="navigate('exchanges')">
+            <ion-icon name="pulse-outline"></ion-icon>
+            <ion-text color="primary"> Exchanges </ion-text>
+          </div></ion-col
+        >
+        <ion-col size="4"
+          ><div class="icon">
+            <ion-icon name="wallet-outline"></ion-icon>
+            <ion-text color="primary"> Withdraw </ion-text>
+          </div></ion-col
+        >
+        <ion-col size="4"
+          ><div class="icon" (click)="navigate('deposit')">
+            <ion-icon name="send-outline"></ion-icon>
+            <ion-text color="primary"> Deposit </ion-text>
+          </div></ion-col
+        >
+      </ion-row>
+    </ion-grid>
+    <h1>Recent Transaction</h1>
+    <div *ngFor="let transaction of transactionList" class="transaction-card">
+      <div>
+        <span>{{transaction.type.toUpperCase()}}</span>
+        <span>01/02/2024</span>
+      </div>
+      <div id="transaction-value" class="{{transactionClass(transaction)}}">
+        {{valueFormat(transaction)}}{{transaction.value}}
+      </div>
+    </div>
+  </div>
+</ion-content>
