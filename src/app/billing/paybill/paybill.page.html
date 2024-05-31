@@ -1,0 +1,17 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header>
+    <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
+    <h1>Pay Bill</h1>
+  </ion-header>
+
+  <div class="input-container">
+    <ion-text color="primary">
+      <h1>{{id}}</h1>
+    </ion-text>
+    <ion-input [(ngModel)]="billerId" type="text" placeholder="Biller ID" required></ion-input>
+    <ion-input [(ngModel)]="billAmount" type="text" placeholder="Enter amount" required></ion-input>
+    <ion-button (click)="payBill()" color="success" expand="block" shape="round">
+      Proceed
+    </ion-button>
+  </div>
+</ion-content>

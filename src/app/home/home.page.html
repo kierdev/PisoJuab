@@ -1,64 +1,60 @@
 <ion-content class="ion-padding">
-  <ion-spinner
-    *ngIf="isLoading"
-    class="loadingAnimation"
-    name="circles"
-  ></ion-spinner>
+  <ion-spinner *ngIf="isLoading" class="loadingAnimation" name="circles"></ion-spinner>
   <div *ngIf="!isLoading" class="container">
     <h1>My Wallet</h1>
     <div class="dashboard-card">
       <span>Available Balance</span>
-      <div>PHP{{balance}}.00</div>
+      <div>PHP {{formatBalance(balance)}}</div>
       <span>Account Number</span>
       <div>{{currentAccountNumber}}</div>
     </div>
     <ion-grid>
       <ion-row>
-        <ion-col size="4"
-          ><div class="icon" (click)="navigate('transfer')">
+        <ion-col size="4">
+          <div class="icon" (click)="navigate('transfer')">
             <ion-icon name="cash-outline"></ion-icon>
             <ion-text color="primary"> Transfer </ion-text>
-          </div></ion-col
-        >
-        <ion-col size="4"
-          ><div class="icon" (click)="navigate('transactions')">
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="icon" (click)="navigate('transactions')">
             <ion-icon name="today-outline"></ion-icon>
             <ion-text color="primary"> History </ion-text>
-          </div></ion-col
-        >
-        <ion-col size="4"
-          ><div class="icon">
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="icon" (click)="navigate('billing')">
             <ion-icon name="card-outline"></ion-icon>
             <ion-text color="primary"> Pay Bills </ion-text>
-          </div></ion-col
-        >
+          </div>
+        </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col size="4"
-          ><div class="icon" (click)="navigate('exchanges')">
+        <ion-col size="4">
+          <div class="icon" (click)="navigate('exchanges')">
             <ion-icon name="pulse-outline"></ion-icon>
             <ion-text color="primary"> Exchanges </ion-text>
-          </div></ion-col
-        >
-        <ion-col size="4"
-          ><div class="icon">
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="icon" (click)="navigate('withdraw')">
             <ion-icon name="wallet-outline"></ion-icon>
             <ion-text color="primary"> Withdraw </ion-text>
-          </div></ion-col
-        >
-        <ion-col size="4"
-          ><div class="icon" (click)="navigate('deposit')">
+          </div>
+        </ion-col>
+        <ion-col size="4">
+          <div class="icon" (click)="navigate('deposit')">
             <ion-icon name="send-outline"></ion-icon>
             <ion-text color="primary"> Deposit </ion-text>
-          </div></ion-col
-        >
+          </div>
+        </ion-col>
       </ion-row>
     </ion-grid>
     <h1>Recent Transaction</h1>
     <div *ngFor="let transaction of transactionList" class="transaction-card">
       <div>
         <span>{{transaction.type.toUpperCase()}}</span>
-        <span>01/02/2024</span>
+        <span>{{formatDate(transaction.date)}}</span>
       </div>
       <div id="transaction-value" class="{{transactionClass(transaction)}}">
         {{valueFormat(transaction)}}{{transaction.value}}

@@ -60,6 +60,7 @@ export class UserdataService {
         balance: userData.balance,
         age: userData.age,
         transactions: transactionsData,
+        gender: userData.gender,
       };
       usersList.push(data);
     }
@@ -90,6 +91,7 @@ export class UserdataService {
       balance: userData.balance,
       age: userData.age,
       transactions: transactionsData,
+      gender: userData.gender,
     };
     return data;
   }
@@ -97,14 +99,6 @@ export class UserdataService {
   async createUser(docId: string, data: any) {
     const docRef = doc(this.firestore, 'users', docId);
     await setDoc(docRef, data);
-    const transactionsCollectionRef = collection(
-      this.firestore,
-      `users/${docId}/transactions`
-    );
-    await addDoc(transactionsCollectionRef, {
-      type: 'deposit',
-      value: 1000,
-    });
   }
 
   async getUserByEmail(email: string) {
@@ -129,23 +123,22 @@ export class UserdataService {
 
       transactionList.push(transactionData);
     });
-    // sender: senderId,
-    // type: 'transfer',
-    // value: transferValue,
-    // role: 'receiver',
     let tempBalance = 0;
     transactionList.map((transaction: any) => {
+      console.log(typeof transaction.date);
+
       if (transaction.type.toLowerCase() == 'deposit') {
         tempBalance += transaction.value;
       } else if (transaction.type.toLowerCase() == 'withdraw') {
         tempBalance -= transaction.value;
-      }
-      if (transaction.type.toLowerCase() == 'transfer') {
+      } else if (transaction.type.toLowerCase() == 'transfer') {
         if (transaction.role == 'receiver') {
           tempBalance += transaction.value;
         } else {
           tempBalance -= transaction.value;
         }
+      } else if (transaction.type.toLowerCase().match('billing')) {
+        tempBalance -= transaction.value;
       }
     });
 
@@ -158,8 +151,8 @@ export class UserdataService {
       lastName: userData.lastName,
       middleName: userData.middleName,
       transactions: transactionList,
+      gender: userData.gender,
     };
-
     return user;
   }
 }

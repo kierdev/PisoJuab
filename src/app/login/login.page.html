@@ -1,32 +1,16 @@
-<ion-content>
+<ion-content class="ion-padding">
+  <div class="login-header">
+    <h1>PISOJUAN</h1>
+  </div>
   <div class="inputs-container">
-    <ion-input
-      [(ngModel)]="email"
-      type="email"
-      label="Email"
-      label-placement="floating"
-      fill="outline"
-      placeholder="Enter text"
-      color="primary"
-    ></ion-input>
+    <ion-input [(ngModel)]="email" type="email" label="Email" label-placement="floating" fill="outline"
+      placeholder="Enter text" color="primary"></ion-input>
 
-    <ion-input
-      [(ngModel)]="password"
-      type="password"
-      label="Password"
-      label-placement="floating"
-      fill="outline"
-      placeholder="Enter text"
-      color="primary"
-    ></ion-input>
+    <ion-input [(ngModel)]="password" type="password" label="Password" label-placement="floating" fill="outline"
+      placeholder="Enter text" color="primary"></ion-input>
 
     <div>
-      <ion-button
-        (click)="login()"
-        color="primary"
-        expand="block"
-        shape="round"
-      >
+      <ion-button (click)="login()" color="primary" expand="block" shape="round">
         LOGIN
       </ion-button>
       <span>OR</span>

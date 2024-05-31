@@ -1,10 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor() {}
+  constructor(private router: Router) {}
+
+  canActivate() {
+    // if not authorized, go to login page
+    if (!this.getAuth()) {
+      this.router.navigate(['login']);
+      return;
+    }
+  }
 
   setAuth(auth: boolean) {
     if (auth) {
@@ -13,7 +22,17 @@ export class AuthenticationService {
       localStorage.setItem('isLoggedIn', 'false');
     }
   }
+  getAuth() {
+    let auth = false;
+    localStorage.getItem('isLoggedIn') == 'true'
+      ? (auth = true)
+      : (auth = false);
+    return auth;
+  }
   setUser(user: string) {
+    if (!user) {
+      return;
+    }
     localStorage.setItem('user', user);
   }
   removeUser() {

@@ -1,36 +1,28 @@
-<ion-content [fullscreen]="true">
-  <h1>Convert</h1>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header>
+    <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
+    <h1>Convert</h1>
+  </ion-header>
   <div class="container">
     <div>
       <div class="flex-row">
         <ion-label>Currency</ion-label>
-        <ion-input
-          [(ngModel)]="amount"
-          type="text"
-          placeholder="Enter amount in PHP"
-        ></ion-input>
+        <ion-input [(ngModel)]="amount" type="text" placeholder="Enter amount in PHP"></ion-input>
       </div>
     </div>
     <div>
       <h1>Convert to:</h1>
       <ion-label>Select Currency</ion-label>
       <ion-select [(ngModel)]="convertToCurrency">
-        <ion-select-option
-          *ngFor="let currency of ratesList | keyvalue"
-          value="{{currency.key}}"
-          ><ion-text color="primary"> {{currency.key}} </ion-text>
+        <ion-select-option *ngFor="let currency of ratesList | keyvalue" value="{{currency.key}}">
+          <ion-text color="primary"> {{currency.key}} </ion-text>
         </ion-select-option>
       </ion-select>
     </div>
     <ion-text *ngIf="isConverted" color="primary">
-      <h1>PHP{{convertedValue}}</h1>
+      <h1>PHP {{convertedValue}}</h1>
     </ion-text>
-    <ion-button
-      (click)="convertAmount()"
-      expand="block"
-      color="primary"
-      shape="round"
-    >
+    <ion-button (click)="convertAmount()" expand="block" color="primary" shape="round">
       Convert
     </ion-button>
   </div>

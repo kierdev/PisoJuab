@@ -7,5 +7,6 @@ export interface User {
   firstName: string;
   lastName: string;
   middleName: string;
+  gender: string;
   transactions: Transaction[];
 }

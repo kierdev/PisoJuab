@@ -1,0 +1,15 @@
+<ion-content class="ion-page ion-padding" id="main-content">
+  <ion-header>
+    <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
+    <h1>Pay bills</h1>
+  </ion-header>
+
+  <div class="container">
+    <div class="biller-list" *ngFor="let item of billerList">
+      <h1 (click)="navigate(item)">
+        {{item}}
+      </h1>
+    </div>
+
+  </div>
+</ion-content>

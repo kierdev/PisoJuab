@@ -26,6 +26,7 @@ export class LoginPage {
       .login(this.email, this.password)
       .then(() => {
         this.accountService.setEmail(this.email);
+        this.authenticationService.setUser(this.email);
         this.alertLogin();
       })
       .catch(() => {
@@ -43,8 +44,7 @@ export class LoginPage {
       buttons: [
         {
           text: 'OK',
-          handler: () => {
-            this.authenticationService.setUser(this.email);
+          handler: async () => {
             this.authenticationService.setAuth(true);
             this.router.navigate(['dashboard/home'], {});
           },

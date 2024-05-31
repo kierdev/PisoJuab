@@ -1,15 +1,15 @@
 <ion-content class="ion-padding">
   <ion-header>
     <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
-    <h1>Deposit</h1>
+    <h1>Withdraw</h1>
   </ion-header>
 
   <div class="input-container">
     <ion-text color="primary">
-      <h1>Deposit Amount</h1>
+      <h1>Withdraw Amount</h1>
     </ion-text>
-    <ion-input [(ngModel)]="depositAmount" type="text" placeholder="Enter amount"></ion-input>
-    <ion-button (click)="deposit()" color="success" expand="block" shape="round">
+    <ion-input [(ngModel)]="withdrawAmount" type="text" placeholder="Enter amount"></ion-input>
+    <ion-button (click)="withdraw()" color="success" expand="block" shape="round">
       Proceed
     </ion-button>
   </div>

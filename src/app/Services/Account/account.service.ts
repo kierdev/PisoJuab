@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { last } from 'rxjs';
-
+import { Storage } from '@ionic/storage-angular';
 @Injectable({
   providedIn: 'root',
 })
@@ -21,13 +21,36 @@ export class AccountService {
   middleName: string = '';
   lastName: string = '';
   email: string = '';
+  gender: string = '';
   age: number = 0;
 
-  constructor() {}
+  constructor(private storage: Storage) {
+    this.init(); // Initialize storage
+  }
+  async init() {
+    await this.storage.create(); // Ensure storage is ready
+  }
+  async setItem(key: string, value: any) {
+    await this.storage.set(key, value);
+  }
 
+  async getItem(key: string): Promise<any> {
+    const stringValue = await this.storage.get(key);
+    // Check if the retrieved value is null or undefined
+    if (stringValue === null || stringValue === undefined) {
+      return null; // or any other default value you prefer
+    }
+    // Convert string back to object when retrieving
+    return JSON.parse(stringValue);
+  }
+
+  async removeItem(key: string) {
+    await this.storage.remove(key);
+  }
   setAccountId(id: any) {
     this.currentAccountNumber = id;
   }
+
   getAccountId() {
     return this.currentAccountNumber;
   }
@@ -42,6 +65,12 @@ export class AccountService {
   }
   getEmail() {
     return this.currentUserEmail;
+  }
+  setGender(gender: string) {
+    this.gender = gender;
+  }
+  getGender() {
+    return this.gender;
   }
   setTransactionList(list: any[]) {
     this.transactionList = list;
@@ -70,6 +99,7 @@ export class AccountService {
   getAge() {
     return this.age;
   }
+
   async signup(email: string, password: string) {
     const auth = getAuth();
     return await createUserWithEmailAndPassword(auth, email, password);

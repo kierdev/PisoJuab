@@ -1,9 +1,10 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-header>
+    <ion-icon (click)="back()" name="chevron-back-outline"></ion-icon>
+    <h1>Profile Account</h1>
+  </ion-header>
   <ion-avatar>
-    <img
-      alt="Silhouette of a person's head"
-      src="https://ionicframework.com/docs/img/demos/avatar.svg"
-    />
+    <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
   </ion-avatar>
   <ion-list>
     <ion-item>
@@ -30,8 +31,12 @@
       <ion-label>Age:</ion-label>
       <div>{{age}}</div>
     </ion-item>
+    <ion-item>
+      <ion-label>Gender: </ion-label>
+      <div>{{gender}}</div>
+    </ion-item>
   </ion-list>
-  <ion-button (click)="logoOut()" expand="block" color="primary" shape="round">
+  <ion-button (click)="logOut()" expand="block" color="primary" shape="round">
     Logout
   </ion-button>
 </ion-content>

@@ -31,11 +31,10 @@ export class SignupPage {
   lastName: string = '';
   accountNumber: string = '';
   age: number = 0;
+  gender: string = '';
 
   signup() {
-    // ? is Password equal to retype password
-    // ? is Email valid
-    // ? is Account number (length == 12)
+    this.accountNumber = this.generateRandomDigits();
     if (
       this.validatePassword(this.password, this.retypePassword) &&
       this.validateEmail(this.email) &&
@@ -73,7 +72,14 @@ export class SignupPage {
         });
     }
   }
-
+  generateRandomDigits() {
+    let value: string = '';
+    for (let i = 0; i < 9; i++) {
+      const randomDigit = Math.floor(Math.random() * 10); // Generates a random digit between 0 and 9
+      value += randomDigit;
+    }
+    return value;
+  }
   validatePassword(password: String, confirmPassword: String): boolean {
     let isValid = false;
     if (password.length < 8) {
@@ -96,7 +102,7 @@ export class SignupPage {
   }
   validateAccountNumber(id: string) {
     let isValid = false;
-    if (id.length === 12) {
+    if (id.length === 9) {
       isValid = true;
     }
     return isValid;

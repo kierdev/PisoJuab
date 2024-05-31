@@ -7,7 +7,7 @@
     <div *ngFor="let transaction of transactionList" class="transaction-card">
       <div>
         <span>{{transaction.type.toUpperCase()}}</span>
-        <span>01/02/2024</span>
+        <span>{{formatDate(transaction.date)}}</span>
       </div>
       <div id="transaction-value" class="{{transactionClass(transaction)}}">
         {{valueFormat(transaction)}}{{transaction.value}}

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./exchanges.page.scss'],
 })
 export class ExchangesPage implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
   convertToCurrency: string = '';
   ratesList: any = {};
   amount: number = 0;
@@ -17,6 +18,9 @@ export class ExchangesPage implements OnInit {
 
   ngOnInit(): void {
     this.fetch();
+  }
+  back() {
+    this.router.navigate(['dashboard/home']);
   }
 
   async fetch() {

@@ -13,6 +13,7 @@ import {
   setDoc,
 } from 'firebase/firestore';
 import { Transaction } from 'src/app/Model/transaction.model';
+import { __values } from 'tslib';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +25,8 @@ export class TransactionService {
   firestore = getFirestore(this.app);
 
   async transferMoney(senderId: any, receiverId: any, transferValue: number) {
+    const now = new Date();
+
     // add transaction to receiver
     const receiverTransactionsCollectionRef = collection(
       this.firestore,
@@ -34,6 +37,7 @@ export class TransactionService {
       type: 'transfer',
       value: transferValue,
       role: 'receiver',
+      date: now.toISOString(),
     });
     // add transaction to sender
     const senderTransactionCollectionRef = collection(
@@ -45,6 +49,7 @@ export class TransactionService {
       type: 'transfer',
       value: transferValue,
       role: 'sender',
+      date: now.toISOString(),
     });
   }
 
@@ -74,24 +79,16 @@ export class TransactionService {
     return transactions;
   }
   async addTransaction(id: any, type: string, transferValue: number) {
-    const transactionData = {
+    const transactionCollectionsRef = collection(
+      this.firestore,
+      `users/${id}/transactions`
+    );
+    const now = new Date();
+    return await addDoc(transactionCollectionsRef, {
       type: type,
-      value: transferValue,
-    };
-    const userDocRef = doc(this.firestore, 'users', id);
-
-    // Get the user document
-    const userDocSnap = await getDoc(userDocRef);
-
-    // Check if the user document exists
-    if (userDocSnap.exists()) {
-      // Reference to the transactions collection within the user document
-      const transactionsCollectionRef = collection(userDocRef, 'transactions');
-
-      return await addDoc(transactionsCollectionRef, transactionData);
-    } else {
-      return null;
-    }
+      value: Number(transferValue),
+      date: now.toISOString(),
+    });
   }
 
   //Delete
@@ -104,7 +101,6 @@ export class TransactionService {
       console.log(error);
     }
   }
-
   //Update
 
   async updateTransaction() {
